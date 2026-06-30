@@ -7,3 +7,6 @@ joblib
 
 shap
 xgboost
+
+fastapi
+uvicorn[standard]
