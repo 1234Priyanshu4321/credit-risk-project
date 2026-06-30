@@ -19,6 +19,7 @@ from sklearn.model_selection import StratifiedKFold, cross_val_score, train_test
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from xgboost import XGBClassifier
+from sklearn.base import clone
 
 ARTIFACT_DIR = "artifacts"
 
@@ -50,7 +51,6 @@ def build_preprocessor(X):
     ])
 
 
-from sklearn.base import clone
 
 
 def build_pipelines(preprocessor):
@@ -113,7 +113,6 @@ def main():
     import os
     os.makedirs(ARTIFACT_DIR, exist_ok=True)
     joblib.dump(best_pipeline, f"{ARTIFACT_DIR}/model.joblib")
-    joblib.dump(columns, f"{ARTIFACT_DIR}/columns.joblib")
 
     metadata = {
         "best_model_name": best_name,
