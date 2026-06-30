@@ -95,7 +95,7 @@ def main():
     )
 
     preprocessor = build_preprocessor(X)
-
+    
     pipelines = build_pipelines(preprocessor)
     best_name, cv_means, cv_stds = select_best_by_cv(pipelines, X, y)
     print(f"\nBest Model Selected (by CV mean ROC-AUC): {best_name}")
@@ -113,6 +113,7 @@ def main():
     import os
     os.makedirs(ARTIFACT_DIR, exist_ok=True)
     joblib.dump(best_pipeline, f"{ARTIFACT_DIR}/model.joblib")
+    joblib.dump(columns, f"{ARTIFACT_DIR}/columns.joblib")
 
     metadata = {
         "best_model_name": best_name,
